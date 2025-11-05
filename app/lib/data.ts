@@ -43,6 +43,9 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+
+    // console.log('Latest Invoices:', latestInvoices);
+
     return latestInvoices;
   } catch (error) {
     console.error('Database Error:', error);
@@ -73,12 +76,23 @@ export async function fetchCardData() {
     const totalPaidInvoices = formatCurrency(data[2][0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2][0].pending ?? '0');
 
+
+    // console.log({
+    //   numberOfCustomers,
+    //   numberOfInvoices,
+    //   totalPaidInvoices,
+    //   totalPendingInvoices,
+    // });
+
     return {
       numberOfCustomers,
       numberOfInvoices,
       totalPaidInvoices,
       totalPendingInvoices,
     };
+
+    
+
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch card data.');
